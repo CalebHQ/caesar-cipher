@@ -1,5 +1,5 @@
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
-custom = '0123456789abcdefghijklmnopqrstuvwxyz!#$%&.?@ '
+custom = '0123456789abcdefghijklmnopqrstuvwxyz!#$%&.?@'
 
 password = 'HardPassword'
 shift = 19
@@ -20,9 +20,12 @@ def decrypt(password, chars):
         shift -= 1
 
         for letter in password.lower():
-            index = chars.index(letter)
-            temp = temp_alph[index]
-            decryption += temp
+            if letter == ' ':
+                decryption += letter
+            else:
+                index = chars.index(letter)
+                temp = temp_alph[index]
+                decryption += temp
         print(f'{shift}: {decryption.title()}')
         decryption = ''
 
@@ -38,12 +41,15 @@ def encrypt(password, shift, chars):
         temp_alph.pop(0)
 
     for letter in password.lower():
-        index = chars.index(letter)
-        temp = temp_alph[index]
-        encryption += temp
+        if letter == ' ':
+            encryption += letter
+        else:
+            index = chars.index(letter)
+            temp = temp_alph[index]
+            encryption += temp
     return encryption.title()
 
 
 encryption = encrypt(password, shift, ALPHABET)
 print(f'Encryption: {encryption}')
-decrypt(encryption, ALPHABET)
+decrypt('M Pszi Gcfiv Wigyvmxc', ALPHABET)
